@@ -1,8 +1,28 @@
 :root {
-    --bs-body-bg: rgb(103, 198, 243);
+    --bs-body-bg: rgb(159, 218, 246);
 }
 
 .custom-main-header {
     font-size:64px;
+
+}
+
+.city-search {
+    padding-top: 24px;
+   
+}
+
+.search-name {
+    font-size: 24px;
+    
+    font-weight: 500;
+}
+
+.search-btn {
+    font-size: 18px;
+    
+
+    border-radius: 5px;
+    
 
 }
