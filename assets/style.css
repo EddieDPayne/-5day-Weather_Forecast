@@ -1,0 +1,8 @@
+:root {
+    --bs-body-bg: rgb(103, 198, 243);
+}
+
+.custom-main-header {
+    font-size:64px;
+
+}
