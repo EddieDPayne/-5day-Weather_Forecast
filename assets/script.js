@@ -1,10 +1,20 @@
-// $(function () {
+
+var displayTimeElement = $('#currentDay');
+// Function to display current date and time in header.
+function displayTime() {
+  displayTimeElement.text(dayjs().format('MMM DD, YYYY [at] hh:mm:ss a'));
+}
+setInterval(displayTime, 1000);
+
 
     var searchBtn = $('.search-button');
 var searchForm = document.getElementById('search-form');
 var searchInput = document.getElementById('city-search');
 var apiKey = 'f274417977bfe3e7532f91875384063b';
 var weatherContainer = $('.container');
+
+
+
 
 
     // Function to request the weather sites API
@@ -137,4 +147,3 @@ function searchHistory() {
 
   
     
-// });
