@@ -83,7 +83,7 @@ var windSpeedEl = document.createElement('p')
 
 tempEl.textContent = `Temperature: ${temperature[i]}`;
 
-p.appendChild(tempEl);
+
 
   
   };
@@ -95,6 +95,7 @@ function searchCity (event) {
     var city = searchInput.value.trim();
     getApi(city);
     getForecast(city);
+    displayWeather(data);
 }    
 
 

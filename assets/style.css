@@ -23,9 +23,9 @@
 
 .search-btn {
     font-size: 18px;
-    font-family:'Franklin Gothic Medium', Arial, sans-serif;
-    color: #29292c;
-    background-color: rgb(240, 237, 211);
+    font-family: inherit;
+    color: #373737;
+    background-color: rgb(232, 216, 78);
 padding: 4px;
     border-radius: 5px;
     margin-top: 10px;
