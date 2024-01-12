@@ -21,7 +21,11 @@ var weatherContainer = $('.container');
             })
 .then(function(data) {
     console.log(data);
-    console.log(data.main.humidity);
+    console.log(data.list.temp);
+    console.log(data.list.humidity);
+    console.log(data.list);
+
+  
    
 })   
 .catch(function(error){
@@ -47,7 +51,7 @@ var weatherContainer = $('.container');
           if (response.ok) {
               return response.json()
           }
-          throw response.json()
+          throw response.json() // Error control
       })
       .then(function(data) {
           console.log(data);
@@ -59,22 +63,30 @@ var weatherContainer = $('.container');
       });    
       
 
-      for (var i = 0; i < data.list.length; i++) {
+    //   for (var i = 0; i < data.list.length; i++) {
         
         
-      }
+    //   }
   }
   
   
 // Function to display current weather
-  function displayWeather(data) {
-  var temp = data.main.temp;    
+  function displayWeather(data){ 
+  var temperature = data.main.temp    
   var humidity = data.main.humidity
   var windSpeed = data.wind.speed
-  
-  
-  }
+  // Display on page 
+ 
+var tempEl = document.createElement('p')
+var humidityEl = document.createElement('p')
+var windSpeedEl = document.createElement('p')
 
+tempEl.textContent = `Temperature: ${temperature[i]}`;
+
+p.appendChild(tempEl);
+
+  
+  };
 
 // Function to search city
 function searchCity (event) {
@@ -82,24 +94,28 @@ function searchCity (event) {
     event.preventDefault();
     var city = searchInput.value.trim();
     getApi(city);
-getForecast(city);
+    getForecast(city);
 }    
 
 
 
 
-// console.log(searchForm);
-
-
-
-
-
-
-
-
-
-
+// Event listener
 searchForm.addEventListener('submit', searchCity) // Event listener on the search button
+
+
+// Function to display previous seaches and buttons from localStorage
+function searchHistory() {
+
+}
+
+
+
+
+
+
+
+
 
 
                 
@@ -108,7 +124,6 @@ searchForm.addEventListener('submit', searchCity) // Event listener on the searc
 
 
 
-// Function to display previous seaches and buttons from localStorage
 
 
 

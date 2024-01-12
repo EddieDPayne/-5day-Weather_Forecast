@@ -24,42 +24,61 @@
         </div>
     </header>
     <main class="d-flex min-vh-100">
-        <section class="container d-flex">
+        <section class="container d-flex city-search-section">
             <row class="col-12 col-sm-3 col-md-6 col-lg-9">
-                <div class="city-search-section">
-                    <form id="search-form">
-                        <div class="form-group">
-                            <label for="city-search" class="search-name">City</label>
-                            <input type="text" class="form-control" id="city-search" aria-describedby="search"
-                                placeholder="Enter a city"/>
-                            <small id="search-text" class="form-text text-muted">Search any city for a live 5 day
-                                forecast.</small>
-                                <button class="search-btn">Search
-                                </button>
-                            </div>
-                        </form>
 
+                <form id="search-form">
+                    <div class="form-group">
+                        <label for="city-search" class="search-name">City</label>
+                        <input type="text" class="form-control" id="city-search" aria-describedby="search"
+                            placeholder="Enter a city" />
+                        <small id="search-text" class="form-text text-muted">Search any city for a live 5 day
+                            forecast.</small>
+                        <button class="search-btn">Search
+                        </button>
+                    </div>
+                </form>
+                <span class="border border-dark">
+                <div class="container d-flex history-btns">
+                     <span class="border border-dark"></span>
+                    <button id="saved-search-1">Saved 1
+                    </button>
+
+                    <button id="saved-search-2">Saved 2</button>
+                    <button id="saved-search-3">Saved 3</button>
                 </div>
-
             </row>
-
+        </span>
         </section>
-        <section class="container search-results">
 
+
+
+
+
+
+
+
+        <section class="container d-flex search-results">
+            <span class="border border-dark">
             <row class="col-12 col-sm-3 col-md-6 col-lg-9">
                 <p>This is where the search result should display</p>
             </row>
-
-
+        </span>
         </section>
-        <section class="container rest-of-week-results">
 
+
+
+        <section class="container d-flex rest-of-week-results">
+            <span class="border border-dark">
             <row class="col-12 col-sm-3 col-md-6 col-lg-9">
                 <p>This is where the next four days forecast should display</p>
             </row>
+        </span>
+    </section>
 
 
-        </section>
+
+
 
 
 
