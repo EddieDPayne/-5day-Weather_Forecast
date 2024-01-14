@@ -58,3 +58,17 @@ p {
 .custom-p {
     padding-top: 20px;
 }
+
+ul {
+    color: #2d2d2d;
+    font-size: 20px;
+    background-color: blue;
+}
+
+#display-current-weather {
+    background-color: #a6ecfa;
+}
+
+#display-forecast {
+    background-color: #a3d1da;
+}
