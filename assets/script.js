@@ -18,6 +18,7 @@ var weatherContainer = $('.container');
 
 
     // Function to request the weather sites API
+    
     function getApi(city) {
 
         var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + apiKey // needs Query Selectors
@@ -31,9 +32,9 @@ var weatherContainer = $('.container');
             })
 .then(function(data) {
     console.log(data);
-    console.log(data.list.temp);
-    console.log(data.list.humidity);
-    console.log(data.list);
+    console.log(data.main.temp);
+    console.log(data.main.humidity);
+   
 
   
    
@@ -68,35 +69,43 @@ var weatherContainer = $('.container');
           
           
       })   
-      .catch(function(error){
-          alert('API Had an error' + error);
-      });    
+      .catch(error => {
+console.error('Error fetching data:', error);
+      })
+      };    
       
 
     //   for (var i = 0; i < data.list.length; i++) {
         
         
     //   }
-  }
+  
   
   
 // Function to display current weather
-  function displayWeather(data){ 
-  var temperature = data.main.temp    
-  var humidity = data.main.humidity
-  var windSpeed = data.wind.speed
-  // Display on page 
- 
-var tempEl = document.createElement('p')
-var humidityEl = document.createElement('p')
-var windSpeedEl = document.createElement('p')
 
-tempEl.textContent = `Temperature: ${temperature[i]}`;
+function displayWeather(data) {
+    console.log("Data:", data);
+    var currentWeather = document.getElementById('display-weather');
+
+    var mainWeather = data.weather[0];
+
+    //  This creates a list item for the temperature
+    var tempListItem = document.createElement('li');
+    tempListItem.textContent = `Temperature: ${data.main.temp}°C`;
+    currentWeather.appendChild(tempListItem);
+
+    // Create a list item for the main weather description
+    var weatherDescListItem = document.createElement('li');
+    weatherDescListItem.textContent = `Weather: ${mainWeather.main} - ${mainWeather.description}`;
+    currentWeather.appendChild(weatherDescListItem);
+};
 
 
 
-  
-  };
+
+
+
 
 // Function to search city
 function searchCity (event) {
@@ -105,8 +114,9 @@ function searchCity (event) {
     var city = searchInput.value.trim();
     getApi(city);
     getForecast(city);
-    displayWeather(data);
+  
 }    
+
 
 
 
