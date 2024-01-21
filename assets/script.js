@@ -10,20 +10,21 @@ setInterval(displayTime, 1000);
 var searchBtn = $('.search-btn');
 var searchForm = document.getElementById('search-form');
 var searchInput = document.getElementById('city-search');
-var apiKey = 'f274417977bfe3e7532f91875384063b';
 var weatherContainer = $('#display-weather');
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+var apiKey = 'f274417977bfe3e7532f91875384063b';
+var lon;
+var lat;
 
-
-
-// Function to request the weather sites API
-function getApi(data) {
+function cityApi(cityName) {
   
-  var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=${apiKey}`
+  
+  var requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`
 
   fetch(requestUrl)  // fetch request to API
     .then(function (response) {
@@ -33,76 +34,94 @@ function getApi(data) {
       throw response.json()
     })
     .then(function (data) {
-  
-      displayWeather(data);
-
+  console.log(data);
+      lat = data[0].lat;
+      lon = data[0].lon;
+      weatherApi(lat, lon)
+      // displayWeather(data);
+      
     })
     .catch(function (error) {
       alert('API Had an error' + error);
     });
-}
-        
+  }
+
+// Function to request the weather sites API
+function weatherApi(lat, lon) {
+  
+  
+  var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric}`;
+
+  fetch(requestUrl)  // fetch request to API
+    .then(function (response) {
+      if (response.ok) {
+        return response.json()
+      }
+      throw response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+     for (let i = 0; i < data.list.length; i+=8) {
+    var htmlEl = `
+    <div class="card" style="width: 12rem;">
+    <img src= "https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" style="width: 40%">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Temp: ${data.list[i].main.temp}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div> 
+  </div> 
+    `
+    var htmlDiv = $("<div>")
+    htmlDiv.html(htmlEl);
+      $("#display-forecast-list").append(htmlDiv);
+     }
       
-
-
+    })
+    .catch(function (error) {
+      alert('API Had an error' + error);
+    });
+  }
+  
+  
+  
+  searchForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    var cityName = searchInput.value
+    cityApi(cityName);
+  });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+// str.split(" ")[1].split(":")[0]
 
 // "2020-03-04 12:00:00"
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-// Function to display weather to page - revised
-function displayWeather(data) {
-  console.log("Data:", data);
-
-  // Saves container to a variable
-  var weatherContainer = $('#display-weather-list');
-  // Clears the previous results
-  weatherContainer.empty();
-  // Set the index to 0
-  var mainWeather = data.weather[0];
-  // Creates a list item for the temperature
-  var tempListItem = $('<li>').text(`Temperature: ${data.main.temp}°C`);
-  // Creates a list item for the main weather description
-  var weatherDescListItem = $('<li>').text(`Weather: ${mainWeather.main} - ${mainWeather.description}`);
-  // Creates a list item for the humidity
-  var humidityValue = data.main.humidity;
-  var weatherHumidtyItem = $('<li>').text(`Humidty: ${humidityValue}`);
-  // Creates a list item for the wind
-  var windValue = data.wind.speed;
-  var weatherWindItem = $('<li>').text(`Wind Speed: ${windValue}`);
-
-  // Appends list items to the container/div
-  weatherContainer.append(tempListItem, weatherDescListItem, weatherHumidtyItem, weatherWindItem);
-
-};
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// Function to search city
-function searchCity(event) {
-
-  event.preventDefault();
-  var city = searchInput.value.trim();
-  getApi();
- 
-
-}
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
 
-// Event listener on search button/form
-searchForm.addEventListener('submit', searchCity) // Event listener on the search button
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

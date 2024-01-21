@@ -23,9 +23,9 @@
             <p id="currentDay" class="d-flex justify-content-center custom-p"></p>
         </div>
     </header>
-    <main class="d-flex min-vh-100">
-        <section class="container d-flex city-search-section ">
-            <row class="col-12 col-sm-3 col-md-6 col-lg-9 card-body">
+    <main class="d-flex">
+        <section class="city-search-section">
+            <div class="">
 
                 <form id="search-form">
                     <div class="form-group">
@@ -39,58 +39,37 @@
                     </div>
                 </form>
 
-                <div class="container d-flex history-btns card-body">
+                <div class="container d-flex history-btns">
 
-                    <button id="saved-search-1">Saved Search</button>
+                    <!-- <button id="saved-search-1">Saved Search</button>
                     <button id="saved-search-2">Saved Search</button>
-                    <button id="saved-search-3">Saved Search</button>
+                    <button id="saved-search-3">Saved Search</button> -->
                 </div>
-            </row>
-            </span>
+
+
+
+            </div>
+        </section>
+
+        <section class="display-weather-section d-flex justify-content-center align-items-center flex-grow-1">
+            <div class="weather-container">
+                <div id="display-current-weather" class="">
+                    <h2 class="today-heading">Today</h2>
+                    <ul id="display-weather-list" class="current-conditions">
+
+                    </ul>
+                </div>
+
+                <div id="display-forecast" class="daily-forecast">
+                    <h2 class="forecast-heading">5-Day Forecast</h2>
+                    <div id="display-forecast-list" class="conditions-cards d-flex mx-3 justify-content-between">
+
+                    </div>
+                </div> 
+            </div>
         </section>
 
 
-        <div id="display-current-weather" class="container-fluid">
-            <ul id="display-weather-list" class="current-conditions">
-        
-            </ul>
-        </div>
-        
-                 <div id="display-forecast" class="daily-forecast container-fluid">
-                    <h2 class="forecast-heading">5-Day Forecast</h2>
-                    <ul id="display-forecast-list" class="conditions-cards">
-                   
-                    </ul>
-                 </div>
-                    
-       
-                
-               
-                </main>
-           
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-                crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-                integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
-                <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-                <script src="./assets/script.js"></script>
-            </body>
-            
-            </html> 
-            
-
-            
-               
-
-               
-
-
-
-
-
-
-     
 
 
 
@@ -101,15 +80,15 @@
 
 
 
+    </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
 
-
-
-
-
-
-
-
-
-
-            
+</html>
