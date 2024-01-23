@@ -1,86 +1,7 @@
 :root {
     --bs-body-bg: rgb(211, 239, 252);
 }
-/* 
-.custom-main-header {
-    font-size:64px;
 
-}
-
-.city-search {
-    padding-top: 24px;
-    padding-bottom: 24px;
-    width: 50%;
-   
-}
-
-.search-name {
-    font-size: 24px;
-    padding-top: 18px;
-    padding-bottom: 10px;
-    font-weight: 400;
-    color: #2d2d2d;
-}
-
-.search-btn {
-    font-size: 18px;
-    font-family: inherit;
-    color: #373737;
-    background-color: rgb(232, 216, 78);
-padding: 4px;
-    border-radius: 5px;
-    margin-top: 10px;
-    cursor: pointer;
-    flex: flex-end;
-   
-    
-
-} */
-
-/* .history-btns {
-    font-size: 18px;
-    gap: 50px;
-    width: 70%;
-    flex-direction: column;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 5px;
-    flex: flex-start;
-}
-
-
-.form-text {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-top: 5px;
-}
-
-p {
-    font-size: 24px;
-}
-
-.custom-p {
-    padding-top: 20px;
-}
-
-.current-conditions {
-    color: #2e2e2e;
-    line-height: 2.5;
-    list-style: none;
-    font-size: 34px;
-    background-color: #daebeff0;
-    font-weight: 300;
-    width: 100%;
-    /* outline: solid #2d2d2d; */
-/* } */ */
-
-/* .weather-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: darkgreen;
-width: 100%;
-} */
 
 #display-current-weather {
     background-color: #a6ecfa;
@@ -90,22 +11,19 @@ width: 100%;
     background-color: #a3d1da;
 }
 
-/* .forecast-heading {
-    color: #2e2e2e;
-    font-size: 40px;
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    padding-top: 24px;
-    text-decoration: underline;
+.city-search-section {
+    padding-left: 20px;
+    padding-top: 20px;
 }
 
-.today-heading {
-    color: #2e2e2e;
-    font-size: 40px;
-    font-weight: 300;
-    display: flex;
-    justify-content: center;
-    padding-top: 24px;
-    text-decoration: underline;
-} */
+.search-name {
+    padding-bottom: 10px;
+}
+
+.form-text {
+    padding-top: 8px;
+}
+
+#city-search {
+    padding-bottom: 8px;
+}

@@ -5,7 +5,9 @@ function displayTime() {
 }
 setInterval(displayTime, 1000);
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------------------------------------
+
+
 // Global Variables
 var searchBtn = $('.search-btn');
 var searchForm = document.getElementById('search-form');
@@ -17,7 +19,7 @@ var lon;
 var lat;
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//--------------------------------------------------------------------------------------------------------------
 
 
 // Find city API & Fetch request
@@ -46,7 +48,7 @@ function cityApi(cityName) {
     });
   }
 
-// Function to request the weather sites API
+// Function to request the weather sites API -----------------------------------------------------------------------------
 function weatherApi(lat, lon) {
   
   
@@ -91,16 +93,17 @@ function weatherApi(lat, lon) {
     });
   }
   
-  function displayCurrentDay() {
+  function displayCurrentDay(data) {
 
 var currentDay = dayjs().format('dddd')
  var htmlEl2 =    `<div class="card" style="width: 12rem;">
-<img src= "https://openweathermap.org/img/w/${data.list[0].weather}.png" style="width: 40%">
+<img src= "https://openweathermap.org/img/w/${data.main.weather.icon}.png" style="width: 40%">
 <div class="card-body">
   <h5 class="card-title">${currentDay}</h5>
   <p class="card-text">Temp: ${data.list[0].main.temp}</p>
+
   <p class="card-text">Humidty: ${data.list[0].main.humidity}</p>
-  <p class="card-text">Wind: ${data.list[0].wind.speed}</p>
+  <p class="card-text">Wind: ${data.list[0].main.wind.speed}</p>
   </div> 
 </div> 
   `
@@ -112,25 +115,22 @@ $('#display-current-weather').append(htmlDiv2);
 
 }
   
-  searchForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-    var cityName = searchInput.value
-    cityApi(cityName);
-    displayCurrentDay();
-  });
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+searchForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent the default form submission
+  var cityName = searchInput.value
+  cityApi(cityName);
+  displayCurrentDay();
+});
+
+//--------------------------------------------------------------------------------------------------------------
 
 
 
 // str.split(" ")[1].split(":")[0]
 
-// "2020-03-04 12:00:00"
 
 
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
