@@ -75,9 +75,11 @@ function weatherApi(lat, lon) {
       <p class="card-text">Humidty: ${data.list[i].main.humidity}</p>
       <p class="card-text">Wind: ${data.list[i].wind.speed}</p>
       </div> 
-    </div> 
-      `
+    </div> `
+      
      
+
+
     var htmlDiv = $("<div>")
     htmlDiv.html(htmlEl);
       $("#display-forecast-list").append(htmlDiv);
@@ -89,15 +91,36 @@ function weatherApi(lat, lon) {
     });
   }
   
-  
+  function displayCurrentDay() {
+
+var currentDay = dayjs().format('dddd')
+ var htmlEl2 =    `<div class="card" style="width: 12rem;">
+<img src= "https://openweathermap.org/img/w/${data.list[0].weather}.png" style="width: 40%">
+<div class="card-body">
+  <h5 class="card-title">${currentDay}</h5>
+  <p class="card-text">Temp: ${data.list[0].main.temp}</p>
+  <p class="card-text">Humidty: ${data.list[0].main.humidity}</p>
+  <p class="card-text">Wind: ${data.list[0].wind.speed}</p>
+  </div> 
+</div> 
+  `
+
+
+var htmlDiv2 = $('<div>')
+htmlDiv2.html(htmlEl2);
+$('#display-current-weather').append(htmlDiv2);
+
+}
   
   searchForm.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
     var cityName = searchInput.value
     cityApi(cityName);
+    displayCurrentDay();
   });
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 // str.split(" ")[1].split(":")[0]
