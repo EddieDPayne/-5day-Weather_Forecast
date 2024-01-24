@@ -24,8 +24,8 @@ var lat;
 
 // Find city API & Fetch request
 function cityApi(cityName) {
-  
-  
+  $('#display-forecast-list').html('')
+
   var requestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`
 
   fetch(requestUrl)  // fetch request to API
@@ -36,23 +36,24 @@ function cityApi(cityName) {
       throw response.json()
     })
     .then(function (data) {
-  console.log(data);
+      console.log(data);
       lat = data[0].lat;
       lon = data[0].lon;
       weatherApi(lat, lon)
-      
-      
+      currentWeather(lat, lon)
+
+
     })
     .catch(function (error) {
       alert('API Had an error' + error);
     });
-  }
+}
 
 // Function to request the weather sites API -----------------------------------------------------------------------------
 function weatherApi(lat, lon) {
-  
-  
-  var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric}`;
+
+
+  var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
   fetch(requestUrl)  // fetch request to API
     .then(function (response) {
@@ -63,12 +64,12 @@ function weatherApi(lat, lon) {
     })
     .then(function (data) {
       console.log(data)
-     for (let i = 0; i < data.list.length; i+=8) {
-      // gets revelant day
-      var timestamp = data.list[i].dt * 1000;
-      // uses dayjs to display the relevant day
-      var weekDay = dayjs(timestamp).format('dddd');
-    var htmlEl = `
+      for (let i = 0; i < data.list.length; i += 8) {
+        // gets revelant day
+        var timestamp = data.list[i].dt * 1000;
+        // uses dayjs to display the relevant day
+        var weekDay = dayjs(timestamp).format('dddd');
+        var htmlEl = `
     <div class="card" style="width: 12rem;">
     <img src= "https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" style="width: 40%">
     <div class="card-body">
@@ -78,50 +79,118 @@ function weatherApi(lat, lon) {
       <p class="card-text">Wind: ${data.list[i].wind.speed}</p>
       </div> 
     </div> `
-      
-     
 
+        var htmlDiv = $("<div>")
+        htmlDiv.html(htmlEl);
+        $("#display-forecast-list").append(htmlDiv);
+      }
 
-    var htmlDiv = $("<div>")
-    htmlDiv.html(htmlEl);
-      $("#display-forecast-list").append(htmlDiv);
-     }
-      
     })
     .catch(function (error) {
       alert('API Had an error' + error);
     });
-  }
-  
-  function displayCurrentDay(data) {
-
-var currentDay = dayjs().format('dddd')
- var htmlEl2 =    `<div class="card" style="width: 12rem;">
-<img src= "https://openweathermap.org/img/w/${data.main.weather.icon}.png" style="width: 40%">
-<div class="card-body">
-  <h5 class="card-title">${currentDay}</h5>
-  <p class="card-text">Temp: ${data.list[0].main.temp}</p>
-
-  <p class="card-text">Humidty: ${data.list[0].main.humidity}</p>
-  <p class="card-text">Wind: ${data.list[0].main.wind.speed}</p>
-  </div> 
-</div> 
-  `
-
-
-var htmlDiv2 = $('<div>')
-htmlDiv2.html(htmlEl2);
-$('#display-current-weather').append(htmlDiv2);
-
 }
-  
 
-searchForm.addEventListener('submit', function(event) {
+
+
+
+
+// Display the weather for current day -------------------------------------------------------------------------
+function currentWeather(lat, lon) {
+$('#display-current-weather').html('')
+
+  var requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  fetch(requestUrl)  // fetch request to API
+    .then(function (response) {
+      if (response.ok) {
+        return response.json()
+      }
+      throw response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+
+      var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+var d = new Date();
+let day = weekday[d.getDay()];
+     
+    
+     var htmlEl2 = `
+    <div class="card" style="width: 12rem;">
+    <img src= "https://openweathermap.org/img/w/${data.weather[0].icon}.png" style="width: 40%">
+    <div class="card-body">
+      <h5 class="card-title">${day}</h5>
+      <p class="card-text">Temp: ${data.main.temp}</p>
+      <p class="card-text">Humidty: ${data.main.humidity}</p>
+      <p class="card-text">Wind: ${data.wind.speed}</p>
+      </div> 
+    </div> `
+
+
+
+      var htmlDiv2 = $('<div>')
+      htmlDiv2.html(htmlEl2);
+      $('#display-current-weather').append(htmlDiv2);
+    }
+
+    )
+    .catch(function (error) {
+      alert('API Had an error' + error);
+    });
+}
+
+
+
+
+
+searchForm.addEventListener('submit', function (event) {
   event.preventDefault(); // Prevent the default form submission
   var cityName = searchInput.value
   cityApi(cityName);
-  displayCurrentDay();
+
 });
+
+
+
+function saveToLocalStorage () {
+
+
+
+  
+}
+
+
+
+
+
+
+
+
+//   // var currentDay = dayjs().gethour().format('dddd')
+
+//   var htmlEl2 = `<div class="card" style="width: 12rem;">
+// <img src= "https://openweathermap.org/img/w/${data.main.weather.icon}.png" style="width: 40%">
+// <div class="card-body">
+//   <h5 class="card-title">${currentDay}</h5>
+//   <p class="card-text">Temp: ${data.list[0].main.temp}</p>
+//   <p class="card-text">Humidty: ${data.list[0].main.humidity}</p>
+//   <p class="card-text">Wind: ${data.list[0].main.wind.speed}</p>
+//   </div> 
+// </div> 
+//   `
+
+
+//   var htmlDiv2 = $('<div>')
+//   htmlDiv2.html(htmlEl2);
+//   $('#display-current-weather').append(htmlDiv2);
+
+
+// }
+
+
+
 
 //--------------------------------------------------------------------------------------------------------------
 
