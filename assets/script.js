@@ -141,24 +141,25 @@ let day = weekday[d.getDay()];
     });
 }
 
-
-
-
-
 searchForm.addEventListener('submit', function (event) {
   event.preventDefault(); // Prevent the default form submission
   var cityName = searchInput.value
   cityApi(cityName);
-
+  
 });
 
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------
 
 
 function saveToLocalStorage () {
 
 
 
-  
+
 }
 
 
@@ -168,31 +169,7 @@ function saveToLocalStorage () {
 
 
 
-//   // var currentDay = dayjs().gethour().format('dddd')
 
-//   var htmlEl2 = `<div class="card" style="width: 12rem;">
-// <img src= "https://openweathermap.org/img/w/${data.main.weather.icon}.png" style="width: 40%">
-// <div class="card-body">
-//   <h5 class="card-title">${currentDay}</h5>
-//   <p class="card-text">Temp: ${data.list[0].main.temp}</p>
-//   <p class="card-text">Humidty: ${data.list[0].main.humidity}</p>
-//   <p class="card-text">Wind: ${data.list[0].main.wind.speed}</p>
-//   </div> 
-// </div> 
-//   `
-
-
-//   var htmlDiv2 = $('<div>')
-//   htmlDiv2.html(htmlEl2);
-//   $('#display-current-weather').append(htmlDiv2);
-
-
-// }
-
-
-
-
-//--------------------------------------------------------------------------------------------------------------
 
 
 
