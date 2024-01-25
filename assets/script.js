@@ -145,7 +145,8 @@ searchForm.addEventListener('submit', function (event) {
   event.preventDefault(); // Prevent the default form submission
   var cityName = searchInput.value
   cityApi(cityName);
-  
+ displaySearchedCities(cityName)
+
 });
 
 
@@ -154,20 +155,34 @@ searchForm.addEventListener('submit', function (event) {
 
 //--------------------------------------------------------------------------------------------------------------
 
+function displaySearchedCities() {
 
-function saveToLocalStorage () {
+// Function to display saved cities as buttons
+var searchInput = document.getElementById('city-search');
+var searchForm = document.getElementById('search-form');
 
+// Event listener for the form submission
+searchForm.addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent the default form submission
 
+  // Retrieve the input value
+  var cityName = searchInput.value;
 
+  // Save the data to local storage
+  localStorage.setItem('lastSearchedCity', cityName);
+
+ var savedCityEl = `<div>
+ <button>${cityname}</button>
+ </div>`
+ 
+ var savedCityHtml = $('button')
+ savedCityHtml.html(savedCityEl);
+ $('#saved-cities').append(savedCityHtml);
+  // Optionally, update the display or perform other actions
+  console.log('City saved to local storage:', cityName);
+});
 
 }
-
-
-
-
-
-
-
 
 
 
