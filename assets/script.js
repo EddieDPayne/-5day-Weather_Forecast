@@ -155,34 +155,68 @@ searchForm.addEventListener('submit', function (event) {
 
 //--------------------------------------------------------------------------------------------------------------
 
-function displaySearchedCities() {
+// function displaySearchedCities(cityName){
 
-// Function to display saved cities as buttons
-var searchInput = document.getElementById('city-search');
-var searchForm = document.getElementById('search-form');
+
+
+//   // Retrieve the input value
+//   var cityName = searchInput.value;
+
+//   // Save the data to local storage
+//   localStorage.setItem(JSON.stringify('lastSearchedCity', cityName));
+
+//  var savedCityEl = `<div>
+//  <button>${cityname}</button>
+//  </div>`
+ 
+//  var savedCityHtml = $('<button>')
+//  savedCityHtml.html(savedCityEl);
+//  $('#saved-cities').append(savedCityHtml);
+
+// };
+
+// ... (existing code)
+
+function displaySearchedCities(cityName) {
+  // Create a new button element
+  var savedCityBtn = $('<button>').text(cityName);
+
+  // Add a class or any other attributes as needed
+  savedCityBtn.addClass('saved-city-btn');
+
+  // Append the button to the container (e.g., '#saved-cities')
+  $('#saved-cities').append(savedCityBtn);
+}
 
 // Event listener for the form submission
 searchForm.addEventListener('submit', function (event) {
   event.preventDefault(); // Prevent the default form submission
 
-  // Retrieve the input value
-  var cityName = searchInput.value;
+  
+
 
   // Save the data to local storage
-  localStorage.setItem('lastSearchedCity', cityName);
+  localStorage.setItem('lastSearchedCity', JSON.stringify(cityName));
 
- var savedCityEl = `<div>
- <button>${cityname}</button>
- </div>`
- 
- var savedCityHtml = $('button')
- savedCityHtml.html(savedCityEl);
- $('#saved-cities').append(savedCityHtml);
-  // Optionally, update the display or perform other actions
-  console.log('City saved to local storage:', cityName);
+  // Display the searched city as a button
+  displaySearchedCities(cityName);
+
+  // Perform other actions, such as making API requests with the city name
+  cityApi(cityName);
 });
 
+// Function to display saved cities as buttons
+function displaySavedCities() {
+  var lastSearchedCity = localStorage.getItem('lastSearchedCity');
+  if (lastSearchedCity) {
+    displaySearchedCities(JSON.parse(lastSearchedCity));
+  }
 }
+
+
+
+
+
 
 
 
