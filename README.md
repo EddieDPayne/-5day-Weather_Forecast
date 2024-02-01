@@ -10,7 +10,7 @@ Whilst building this application it became abundantly clear how important the us
 
 Navigate to the GitHub pages URL below to begin using this application - 
 
-- https://eddiedpayne.github.io/Weather_Forecast/
+- https://eddiespag-hetti.github.io/Weather_Forecast/
 
 
 
